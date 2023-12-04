@@ -1,20 +1,17 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { getMovies } from "./api/api";
+import { Route, Routes } from "react-router-dom";
+import MainLayout from "./pages/MainLayout";
+import Home from "./pages/Home";
 
 function App() {
-  const [movies, setMovies] = useState([]);
-
-  useEffect(() => {
-    getMovies().then((movies) => setMovies(movies));
-  }, []);
-
   return (
     <>
-      <div>
-        {movies.map((movie: any) => (
-          <div key={movie.imdbId}>{movie.title}</div>
-        ))}
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+          </Route>
+        </Routes>
       </div>
     </>
   );
